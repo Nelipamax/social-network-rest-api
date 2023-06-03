@@ -33,6 +33,9 @@ public class User implements UserDetails {
     @Column(name = "password", length = 1000)
     private String password;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Post> posts;
+
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
