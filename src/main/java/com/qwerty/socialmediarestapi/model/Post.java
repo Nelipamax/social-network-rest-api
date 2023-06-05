@@ -42,4 +42,7 @@ public class Post {
         dateOfCreated = LocalDateTime.now();
     }
 
+    public void addImageToPost(Image image) {
+        images.add(image);
+    }
 }
