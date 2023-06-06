@@ -1,16 +1,14 @@
 package com.qwerty.socialmediarestapi.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -33,6 +31,14 @@ public class User implements UserDetails {
     @Column(name = "password", length = 1000)
     private String password;
 
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @Column(name = "friends")
+    @ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    private Set<User> friends;
+
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<Post> posts;
 
@@ -42,7 +48,6 @@ public class User implements UserDetails {
 
     @Column(name = "date_of_created")
     private LocalDateTime dateOfCreated;
-
 
     @PrePersist
     private void init() {
