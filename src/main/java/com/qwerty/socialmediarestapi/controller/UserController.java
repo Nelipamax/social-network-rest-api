@@ -1,9 +1,7 @@
 package com.qwerty.socialmediarestapi.controller;
 
-import com.qwerty.socialmediarestapi.model.Post;
 import com.qwerty.socialmediarestapi.model.User;
 import com.qwerty.socialmediarestapi.repository.UserRepository;
-import com.qwerty.socialmediarestapi.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
